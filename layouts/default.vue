@@ -1,10 +1,32 @@
 <template>
-  <div>
-    <Nuxt />
+  <div class="app-container" :class="{ dark: isDarkMode }">
+    <div class="container">
+      <Header @changed="toggleDarkMode" />
+      <Nuxt />
+      <Footer />
+    </div>
   </div>
 </template>
+<script>
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
-<style>
+export default {
+  components: { Header, Footer },
+  data() {
+    return {
+      isDarkMode: false,
+    }
+  },
+  methods: {
+    toggleDarkMode() {
+      return (this.isDarkMode = !this.isDarkMode)
+    },
+  },
+}
+</script>
+
+<style lang="scss">
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
@@ -17,39 +39,26 @@ html {
   box-sizing: border-box;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
+// h6,
+// h5,
+// h4,
+// h3,
+// h2,
+// h1,
+// p {
+// }
+
+.app-container {
+  &.dark {
+    color: white;
+    background: black;
+  }
 }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+.container {
+  min-height: 100vh;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
 }
 </style>
