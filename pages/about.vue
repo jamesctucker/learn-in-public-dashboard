@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h2 class="m-8">Hi, I'm James!</h2>
+    <h1 class="m-8">About</h1>
   </div>
 </template>
 
 <script>
 export default {
-  layout: 'default',
+  name: 'About',
 }
 </script>
